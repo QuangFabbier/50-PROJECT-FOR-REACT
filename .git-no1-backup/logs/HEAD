@@ -1,0 +1,10 @@
+0000000000000000000000000000000000000000 8961dc2671a8767d5ce90d193df4f931302a7c95 QuangFabbier <quangnm3@fabbi.io> 1774861104 +0700	commit (initial): Initialize project using Create React App
+8961dc2671a8767d5ce90d193df4f931302a7c95 58c05c5c41a4954457d4425f4a31d1f55d7ca07c QuangFabbier <quangnm3@fabbi.io> 1774873425 +0700	commit: no-1--lvl-1--no-css
+58c05c5c41a4954457d4425f4a31d1f55d7ca07c 0000000000000000000000000000000000000000 QuangFabbier <quangnm3@fabbi.io> 1774873429 +0700	Branch: renamed refs/heads/master to refs/heads/main
+0000000000000000000000000000000000000000 58c05c5c41a4954457d4425f4a31d1f55d7ca07c QuangFabbier <quangnm3@fabbi.io> 1774873429 +0700	Branch: renamed refs/heads/master to refs/heads/main
+58c05c5c41a4954457d4425f4a31d1f55d7ca07c 1a27a69314dfa886c9321a1b606d4a3b6139e768 QuangFabbier <quangnm3@fabbi.io> 1774921250 +0700	pull: Fast-forward
+1a27a69314dfa886c9321a1b606d4a3b6139e768 58c05c5c41a4954457d4425f4a31d1f55d7ca07c QuangFabbier <quangnm3@fabbi.io> 1774921673 +0700	reset: moving to ORIG_HEAD
+58c05c5c41a4954457d4425f4a31d1f55d7ca07c 6e0ed9f21b917a5b6bd21f023aa7b3b169e7b4bf QuangFabbier <quangnm3@fabbi.io> 1774953770 +0700	commit: new-css-for-lvl1
+6e0ed9f21b917a5b6bd21f023aa7b3b169e7b4bf 4748faed87b19bd851de257f70706937b02f92a1 QuangFabbier <quangnm3@fabbi.io> 1775044815 +0700	commit: landing-page
+4748faed87b19bd851de257f70706937b02f92a1 d12aeb9ed89c4eed601feba3c428f6538675ee87 QuangFabbier <quangnm3@fabbi.io> 1775045461 +0700	commit: add-class
+d12aeb9ed89c4eed601feba3c428f6538675ee87 da65ad446f43b7d935b1407b127af71989401775 QuangFabbier <quangnm3@fabbi.io> 1775094825 +0700	pull: Fast-forward
