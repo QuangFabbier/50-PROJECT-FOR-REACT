@@ -8,6 +8,7 @@ const initialFormData = {
     birthYear: '',
     phone: '',
     email: '',
+    passWord: '',
 };
 
 function Home() {
@@ -160,6 +161,18 @@ function Home() {
                                             value={formData.email}
                                             onChange={handleChange}
                                             placeholder="Enter your email"
+                                            required
+                                        />
+                                    </div>
+                                    <div className={styles.formGroup}>
+                                        <label className={styles.formLabel}>Password</label>
+                                        <input
+                                            className={styles.formInput}
+                                            type="password"
+                                            name="password"
+                                            value={formData.passWord}
+                                            onChange={handleChange}
+                                            placeholder="Enter your password"
                                             required
                                         />
                                     </div>
