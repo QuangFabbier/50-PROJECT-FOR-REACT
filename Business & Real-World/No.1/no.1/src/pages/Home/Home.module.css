@@ -181,8 +181,8 @@
 }
 
 .closeButton:hover {
-    background-color: black;
-    color: red;
+    background-color: rgb(174, 169, 169);
+    color: rgb(54, 45, 45);
 }
 
 .modalTitle {

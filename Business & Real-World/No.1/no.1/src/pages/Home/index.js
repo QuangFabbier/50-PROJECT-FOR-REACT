@@ -81,11 +81,11 @@ function Home() {
 
             <section className={styles.infoSection}>
                 <button className={styles.infoButton} onClick={handleOpenCustomModal}>
-                    Take Info
+                    Sign up
                 </button>
 
                 <button className={styles.googleButton} onClick={handleOpenGoogleModal}>
-                    Google Form
+                    For more information
                 </button>
             </section>
 
@@ -173,7 +173,7 @@ function Home() {
 
                         {modalType === 'google' && (
                             <>
-                                <h2 className={styles.modalTitle}>Google Form</h2>
+                                <h2 className={styles.modalTitle}>For more information</h2>
                                 <iframe
                                     src="https://docs.google.com/forms/d/e/1FAIpQLSfEUuTOdeA-utJuA7iGbGhgK64YvOcw6UgC_-zF4XDKP68EmA/viewform?embedded=true"
                                     className={styles.googleFrame}
