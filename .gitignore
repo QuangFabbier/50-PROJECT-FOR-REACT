@@ -4,3 +4,6 @@ build/
 coverage/
 .DS_Store
 .env*
+.vercel/
+.codex
+.git-no1-backup/
