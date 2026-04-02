@@ -16,6 +16,10 @@ function Home() {
     const [modalType, setModalType] = useState('');
     const [formData, setFormData] = useState(initialFormData);
 
+    const handleOpenContact = () => {
+        setIsModalOpen(true);
+        setModalType('contact');
+    };
     const handleOpenCustomModal = () => {
         setIsModalOpen(true);
         setModalType('custom');
@@ -92,7 +96,9 @@ function Home() {
 
             <section className={styles.contactSection}>
                 <div className={styles.contactLine}></div>
-                <button className={styles.contactButton}>Contact Us</button>
+                <button className={styles.contactButton} onClick={handleOpenContact}>
+                    Contact Us
+                </button>
             </section>
 
             <footer className={styles.footer}>
@@ -184,6 +190,17 @@ function Home() {
                             </>
                         )}
 
+                        {modalType === 'contact' && (
+                            <>
+                                <h2 className={styles.modalTitle}>Contact Us</h2>
+
+                                <div className={styles.contactInfo}>
+                                    <p className={styles.contactText}>Phone: 0982241317</p>
+                                    <p className={styles.contactText}>Email: nguyenminhquang0325@gmail.com</p>
+                                    <p className={styles.contactText}>FB: Kwang</p>
+                                </div>
+                            </>
+                        )}
                         {modalType === 'google' && (
                             <>
                                 <h2 className={styles.modalTitle}>For more information</h2>

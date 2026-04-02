@@ -23,14 +23,22 @@
     height: 300px;
     text-decoration: none;
     width: 100%;
+    transition: transform 0.8s ease;
+}
+
+.featureImage:hover {
+    transform: scale(1.1);
 }
 
 .featureBack {
     width: 100%;
     display: flex;
     justify-content: flex-start;
+    transition: transform 0.8s ease;
 }
-
+.featureBack:hover {
+    transform: scale(1.03);
+}
 .homePageButton {
     border: none;
     background-color: #5252dd;

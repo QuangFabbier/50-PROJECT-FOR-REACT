@@ -18,8 +18,10 @@ function Feature() {
                     </Link>
                 </div>
                 <img src={feature.image} alt={feature.title} className={styles.featureImage} />
-                <h2 className={styles.featureTitle}>{feature.title}</h2>
-                <p className={styles.featureDesc}>{feature.longDescription}</p>
+                <div className={styles.featureDesc}>
+                    <h2 className={styles.featureTitle}>{feature.title}</h2>
+                    <p className={styles.featureDesc}>{feature.longDescription}</p>
+                </div>
             </div>
         </div>
     );
