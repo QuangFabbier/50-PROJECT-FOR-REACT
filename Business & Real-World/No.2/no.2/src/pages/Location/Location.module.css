@@ -1,0 +1,50 @@
+.locationPage {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+}
+
+.locationSection {
+  text-align: center;
+}
+
+.locationImage {
+  width: 100%;
+  height: auto;
+}
+
+.hotelSection {
+  text-align: center;
+  color: #4f3720;
+  background-color: white;
+  border-radius: 10px;
+  padding: 28px 32px 36px;
+}
+.hotelList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.hotelImage {
+  width: 100%;
+  max-width: 320px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+
+.hotelCard {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  align-items: center;
+  margin: 0;
+  border: 1px solid rgba(185, 55, 31, 0.22);
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.hotelInfo {
+  text-align: left;
+}

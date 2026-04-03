@@ -4,24 +4,40 @@ import styles from "./Food.module.css";
 function Food() {
   const { snacks, drinks, mealOptions } = festivalData.foodInfo;
   return (
-    <div className={styles.locationPage}>
-      <section className={styles.locationSection}>
-        <h1 className={styles.locationTitle}>Food</h1>
+    <div className={styles.foodPage}>
+      <section className={styles.foodSection}>
+        <h1 className={styles.foodTitle}>Food & Drinks</h1>
       </section>
 
-      <section className={styles.hotelSection}>
-        <h2 className={styles.sectionTitle}>Nearby Foods</h2>
-
-        <div className={styles.hotelList}>
+      <section className={styles.foodContent}>
+        <h2 className={styles.sectionTitle}>Snacks</h2>
+        <div className={styles.foodList}>
           {snacks.map((snack) => {
             return (
-              <div className={styles.hotelCard}>
-                <img
-                  className={styles.hotelImage}
-                  src={hotel.image}
-                  alt={hotel.name}
-                />
-                <h3 className={styles.hotelName}>{hotel.name}</h3>
+              <div key={snack} className={styles.foodCard}>
+                <h3 className={styles.foodName}>{snack}</h3>
+              </div>
+            );
+          })}
+        </div>
+
+        <h2 className={styles.sectionTitle}>Meals</h2>
+        <div className={styles.foodList}>
+          {mealOptions.map((mealOption) => {
+            return (
+              <div key={mealOption} className={styles.foodCard}>
+                <h3 className={styles.foodName}>{mealOption}</h3>
+              </div>
+            );
+          })}
+        </div>
+
+        <h2 className={styles.sectionTitle}>Drinks</h2>
+        <div className={styles.foodList}>
+          {drinks.map((drink) => {
+            return (
+              <div key={drink} className={styles.foodCard}>
+                <h3 className={styles.foodName}>{drink}</h3>
               </div>
             );
           })}

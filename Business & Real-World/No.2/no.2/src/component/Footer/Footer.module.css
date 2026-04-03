@@ -1,0 +1,77 @@
+.footerSection {
+  margin-top: 32px;
+  padding: 36px 32px 20px;
+  border-top: 2px solid rgba(166, 132, 74, 0.18);
+}
+
+.footerInner {
+  display: grid;
+  grid-template-columns: 1.7fr 0.8fr 1fr;
+  gap: 32px;
+}
+
+.footerTitle {
+  margin: 0 0 12px;
+  font-size: 28px;
+  color: #4f3720;
+}
+
+.footerHeading {
+  margin: 0 0 14px;
+  font-size: 18px;
+  color: #6e4b28;
+}
+
+.footerText,
+.footerMeta,
+.footerCopyright {
+  margin: 0;
+  color: #5f574d;
+  line-height: 1.7;
+}
+
+.footerBrand,
+.footerNote {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerLink {
+  width: fit-content;
+  color: #4f3720;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.footerLink:hover {
+  color: #b9371f;
+  transform: translateX(2px);
+}
+
+.footerBottom {
+  margin-top: 24px;
+  padding-top: 18px;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid rgba(166, 132, 74, 0.18);
+}
+
+@media (max-width: 768px) {
+  .movieList {
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+
+  .footerInner {
+    grid-template-columns: 1fr;
+  }
+}

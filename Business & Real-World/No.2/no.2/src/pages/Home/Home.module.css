@@ -1,0 +1,159 @@
+.homePage {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+}
+
+.heroSection {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.heroImage {
+  width: 80%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+  color: white;
+}
+
+.heroTitle {
+  font-size: 48px;
+}
+
+.heroTagline {
+}
+
+.heroMeta {
+}
+
+.aboutSection {
+  max-width: 760px;
+  margin: 48px auto 56px;
+  padding: 0 12px;
+  text-align: center;
+}
+
+.aboutTitle {
+  margin: 0 0 16px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #4f3720;
+  line-height: 1.2;
+}
+
+.aboutText {
+  margin: 0 auto;
+  max-width: 680px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #5f574d;
+}
+
+.featureList {
+  text-align: center;
+  color: #4f3720;
+  background-color: white;
+  border-radius: 10px;
+  padding: 28px 32px 36px;
+}
+
+.movieList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 420px));
+  justify-content: space-between;
+  row-gap: 32px;
+  column-gap: 24px;
+  margin-top: 24px;
+}
+
+.movieCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.movieImage {
+  width: 100%;
+  max-width: 320px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+
+.movieTitle {
+  margin: 16px 0 10px;
+  color: #3f2f1f;
+  font-size: 22px;
+}
+
+.movieDesc {
+  margin: 0;
+  max-width: 320px;
+  color: #5f574d;
+  line-height: 1.7;
+}
+
+/* @media (max-width: 768px) {
+  .movieList {
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+} */
+
+.ticketSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 40px;
+}
+
+.ticketBtn {
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #d94f2b, #b9371f);
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgba(185, 55, 31, 0.25);
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.ticketBtn:hover {
+  background: linear-gradient(135deg, #e45b34, #c64025);
+  box-shadow: 0 14px 28px rgba(185, 55, 31, 0.32);
+  transform: translateY(-2px);
+}
+
+.ticketBtn:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(185, 55, 31, 0.22);
+}
+
+.ticketBtn:focus-visible {
+  outline: 3px solid rgba(217, 79, 43, 0.25);
+  outline-offset: 4px;
+}

@@ -1,0 +1,50 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: white;
+  justify-content: space-around;
+}
+
+.navLinks {
+  display: flex;
+  gap: 20px;
+}
+
+.navLinks a {
+  text-decoration: none;
+}
+
+.navbarImage {
+  width: 30px;
+  height: 40px;
+}
+.navbarText {
+  padding: 10px 16px;
+  cursor: pointer;
+  color: #2f2a24;
+  border-radius: 999px;
+  font-weight: 600;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.navbarText:hover {
+  background-color: #f5e7c7;
+  color: #8a5a22;
+  box-shadow: 0 6px 16px rgba(138, 90, 34, 0.12);
+  transform: translateY(-1px);
+}
+.navbarText:focus-visible {
+  outline: 3px solid rgba(217, 79, 43, 0.25);
+  outline-offset: 4px;
+}

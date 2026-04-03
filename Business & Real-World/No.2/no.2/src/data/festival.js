@@ -1,3 +1,7 @@
+import oscar1 from "../img/oscar1.jpg";
+import oscar2 from "../img/oscar2.jpg";
+import oscar3 from "../img/oscar3.jpg";
+
 const festivalData = {
   eventInfo: {
     name: "Moonlight Film Festival 2026",
@@ -9,9 +13,9 @@ const festivalData = {
   },
 
   heroImages: [
-    "https://picsum.photos/seed/moonlight-hero-1/1400/800",
-    "https://picsum.photos/seed/moonlight-hero-2/1400/800",
-    "https://picsum.photos/seed/moonlight-hero-3/1400/800",
+    oscar1,
+    oscar2,
+    oscar3,
   ],
 
   featuredMovies: [
@@ -71,18 +75,30 @@ const festivalData = {
         name: "Badrutt's Palace Hotel",
         image:
           "https://commons.wikimedia.org/wiki/Special:Redirect/file/Exterior_Hotel_H_02.jpg",
+        priceRange: "$220 - $320 / night",
+        description:
+          "A classic luxury stay with elegant rooms, quiet lounges, and attentive concierge service.",
+        distance: "1.2 km from the festival venue",
       },
       {
         id: 2,
         name: "Le Parc Hotel Quito",
         image:
           "https://commons.wikimedia.org/wiki/Special:Redirect/file/Le%20Parc%20Hotel%2C%20Quito%20%28exterior%29.jpg",
+        priceRange: "$140 - $210 / night",
+        description:
+          "A modern hotel known for its sleek rooms, rooftop dining, and comfortable city atmosphere.",
+        distance: "2.4 km from the festival venue",
       },
       {
         id: 3,
         name: "Raffles Hotel Singapore",
         image:
           "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hotel%20Raffles%20exterior%203.jpg",
+        priceRange: "$260 - $380 / night",
+        description:
+          "A refined heritage hotel offering spacious suites, polished service, and premium amenities.",
+        distance: "3.1 km from the festival venue",
       },
     ],
   },

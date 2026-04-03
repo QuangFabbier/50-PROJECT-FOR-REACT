@@ -29,7 +29,12 @@ function Location() {
                   src={hotel.image}
                   alt={hotel.name}
                 />
-                <h3 className={styles.hotelName}>{hotel.name}</h3>
+                <div className={styles.hotelInfo}>
+                  <h3 className={styles.hotelName}>{hotel.name}</h3>
+                  <p className={styles.hotelPrice}>{hotel.priceRange}</p>
+                  <p className={styles.hotelDescription}>{hotel.description}</p>
+                  <p className={styles.hotelDistance}>{hotel.distance}</p>
+                </div>
               </div>
             );
           })}
