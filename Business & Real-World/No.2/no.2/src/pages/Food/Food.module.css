@@ -1,0 +1,76 @@
+.foodPage {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+}
+
+.foodSection {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.foodTitle {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 700;
+  color: #4f3720;
+}
+
+.foodContent {
+  padding: 28px 32px 36px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  color: #4f3720;
+}
+
+.sectionTitle {
+  margin: 0 0 16px;
+  padding-left: 12px;
+  border-left: 4px solid #d94f2b;
+  font-size: 24px;
+}
+
+.sectionTitle:not(:first-child) {
+  margin-top: 32px;
+}
+
+.foodList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.foodCard {
+  padding: 20px 18px;
+  background: #fff8f1;
+  border: 1px solid rgba(185, 55, 31, 0.18);
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(79, 55, 32, 0.06);
+  text-align: center;
+}
+
+.foodName {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #3f2f1f;
+}
+
+@media (max-width: 768px) {
+  .foodPage {
+    padding: 24px 16px 40px;
+  }
+
+  .foodTitle {
+    font-size: 30px;
+  }
+
+  .foodContent {
+    padding: 22px 18px 28px;
+  }
+
+  .sectionTitle {
+    font-size: 22px;
+  }
+}
