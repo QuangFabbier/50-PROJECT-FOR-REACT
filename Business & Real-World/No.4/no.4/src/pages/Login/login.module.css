@@ -1,0 +1,78 @@
+.loginSection {
+  max-width: 1280px;
+  max-height: 944px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  gap: 32px;
+  padding: 40px;
+  border-radius: 32px;
+  box-shadow: 0 8px 18px #191c1d0a;
+}
+.formSection h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.formSection p {
+  text-align: center;
+}
+
+.inputSection h3 {
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.inputHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.loginInput {
+  width: 368px;
+  padding: 18px 24px;
+  border-radius: 12px;
+  background-color: #f3f4f5;
+  border: none;
+}
+
+.loginInput:focus {
+  border-color: rgb(59, 130, 246);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+}
+
+.loginBtn {
+  width: 368px;
+  padding: 10px 20px;
+  background-color: rgb(127, 127, 237);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.forgotPass {
+  padding: 10px 20px;
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  color: black;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-decoration: underline;
+  cursor: pointer;
+}
