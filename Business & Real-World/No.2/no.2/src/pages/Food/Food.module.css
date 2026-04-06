@@ -56,21 +56,3 @@
   line-height: 1.5;
   color: #3f2f1f;
 }
-
-@media (max-width: 768px) {
-  .foodPage {
-    padding: 24px 16px 40px;
-  }
-
-  .foodTitle {
-    font-size: 30px;
-  }
-
-  .foodContent {
-    padding: 22px 18px 28px;
-  }
-
-  .sectionTitle {
-    font-size: 22px;
-  }
-}

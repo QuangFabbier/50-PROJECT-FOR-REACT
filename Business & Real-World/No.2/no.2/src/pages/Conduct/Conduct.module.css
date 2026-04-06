@@ -46,42 +46,9 @@
   box-shadow: 0 8px 18px rgba(79, 55, 32, 0.06);
 }
 
-.conductItem::before {
-  counter-increment: rule;
-  content: counter(rule);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: #d94f2b;
-  color: #ffffff;
-  font-weight: 700;
-}
-
 .conductName {
   margin: 2px 0 0;
   font-size: 17px;
   line-height: 1.7;
   color: #3f2f1f;
-}
-
-@media (max-width: 768px) {
-  .conductPage {
-    padding: 24px 16px 40px;
-  }
-
-  .conductTitle {
-    font-size: 30px;
-  }
-
-  .conductContent {
-    padding: 22px 18px 28px;
-  }
-
-  .conductItem {
-    padding: 16px;
-  }
 }
