@@ -1,6 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import styles from "./login.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import google from "../../assets/google.jpg";
 
 function Login() {
   const initialData = {
@@ -8,7 +14,16 @@ function Login() {
     passWord: "",
   };
   const [input, setInput] = useState(initialData);
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const navigate = useNavigate();
+  const { isAuthenticated, error, loginWithRedirect } = useAuth0();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/admin");
+    }
+  }, [isAuthenticated, navigate]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInput({
@@ -16,42 +31,61 @@ function Login() {
       [name]: value,
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (input.email === "admin@gmail.com" && input.passWord === "123") {
-      localStorage.setItem("isLogged", "true");
-      navigate("/admin");
-    } else {
-      alert("Sai tài khoản");
+    try {
+      setIsRedirecting(true);
+      await loginWithRedirect({
+        authorizationParams: {
+          redirect_uri: `${window.location.origin}/admin`,
+          login_hint: input.email || undefined,
+        },
+      });
+    } catch (authError) {
+      setIsRedirecting(false);
+      alert(authError.message || "Khong the dang nhap voi Auth0.");
     }
+
+    // LocalStorage auth:
+    // if (
+    //   input.email === "admin@gmail.com" &&
+    //   input.passWord === "Mquang250103"
+    // ) {
+    //   localStorage.setItem("isLogged", "true");
+    //   navigate("/admin");
+    // } else {
+    //   alert("Sai tai khoan");
+    // }
   };
   const handleClick = () => {
-    alert("Account: admin@gmail.com, Pass: 123");
+    alert("Account: admin@gmail.com, Pass: Mquang250103");
   };
   return (
     <div className={styles.loginSection}>
-      <header>
-        <h1>Scholarly Admin</h1>
-      </header>
       <form className={styles.formSection} onSubmit={handleSubmit}>
-        {/* alt w để thêm 1 div mới gộp lại với gap 12 */}
-        <h1>Welcome Back</h1>
-        <p>
-          Please enter your institutional credentials to <br />
-          access the management suite.
-        </p>
+        <div className={styles.formTittle}>
+          <h1>Welcome Back</h1>
+          <p>
+            Please enter your institutional credentials to <br />
+            access the management suite.
+          </p>
+        </div>
         <div className={styles.inputSection}>
           <h3>UserName</h3>
-          <input
-            className={styles.loginInput}
-            type="email"
-            name="email"
-            value={input.email}
-            onChange={handleChange}
-            placeholder="admin@gmail.com"
-            required
-          />
+
+          <div className={styles.inputWrapper}>
+            <FontAwesomeIcon icon={faUser} className={styles.inputIcon} />
+            <input
+              className={styles.loginInput}
+              type="email"
+              name="email"
+              value={input.email}
+              onChange={handleChange}
+              placeholder="admin@gmail.com"
+              required
+            />
+          </div>
         </div>
         <div className={styles.inputSection}>
           <div className={styles.inputHeader}>
@@ -61,35 +95,52 @@ function Login() {
               type="button"
               onClick={handleClick}
             >
-              Forgot PassWord?
+              Forgot Password?
             </button>
           </div>
-          
-          <input
-            className={styles.loginInput}
-            type="password"
-            name="passWord"
-            value={input.passWord}
-            onChange={handleChange}
-            placeholder="123"
-            required
-          />
+
+          <div className={styles.inputWrapper}>
+            <FontAwesomeIcon icon={faLock} className={styles.inputIcon} />
+            <input
+              className={styles.loginInput}
+              type="password"
+              name="passWord"
+              value={input.passWord}
+              onChange={handleChange}
+              placeholder="*********"
+              required
+            />
+          </div>
         </div>
 
-        <button className={styles.loginBtn} type="submit">
-          Log in
+        <button
+          className={styles.loginBtn}
+          type="submit"
+          disabled={isRedirecting}
+        >
+          {isRedirecting ? "Redirecting..." : "Login"}
+          <FontAwesomeIcon icon={faArrowRight} className={styles.loginArrow} />
         </button>
         <div className={styles.divider}>
           <p>or continue with</p>
         </div>
-        <button className={styles.loginGoogle} type="submit">
-          Login with Google
+        <button
+          className={styles.loginGoogle}
+          type="button"
+          onClick={handleSubmit}
+          disabled={isRedirecting}
+        >
+          <img src={google} alt="Google" className={styles.googleImg} />
+          {isRedirecting ? "Redirecting..." : "Login with Google"}
         </button>
+        {error ? <p>{error.message}</p> : null}
       </form>
-      <p>
-        "The scholarly canvas provides the tools, but the educator provides the
-        vision."
-      </p>
+      <div className={styles.footerText}>
+        <p>
+          "The scholarly canvas provides the tools, but the educator provides
+          the vision."
+        </p>
+      </div>
     </div>
   );
 }

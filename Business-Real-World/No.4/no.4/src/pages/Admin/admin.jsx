@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import styles from "./admin.module.css";
 
 function Admin() {
+  const { logout } = useAuth0();
   const [settings, setSettings] = useState({
     name: "",
     tagline: "",
@@ -21,11 +23,22 @@ function Admin() {
     e.preventDefault();
     localStorage.setItem("festivalSettings", JSON.stringify(settings));
   };
+  const handleLogout = () => {
+    logout({
+      logoutParams: { returnTo: window.location.origin },
+    });
+
+    // LocalStorage auth logout:
+    // localStorage.removeItem("isLogged");
+    // navigate("/login");
+  };
   return (
-    <div class>
+    <div className={styles.adminPage}>
       <header>
         <h1>Admin</h1>
-        <button>Log out</button>
+        <button type="button" onClick={handleLogout}>
+          Log out
+        </button>
       </header>
 
       <main>

@@ -1,12 +1,11 @@
 .loginSection {
-  max-width: 1280px;
-  max-height: 944px;
-  margin: 0 auto;
-  padding: 32px 24px 48px;
+  width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 127px;
 }
 
 .formSection {
@@ -15,10 +14,11 @@
   justify-content: center;
   align-items: center;
   background-color: white;
+  margin-top: 47px;
   gap: 32px;
   padding: 40px;
   border-radius: 32px;
-  box-shadow: 0 8px 18px #191c1d0a;
+  box-shadow: 0 12px 32px 0 rgba(25, 28, 29, 0.04);
 }
 .formSection h3 {
   margin: 0;
@@ -29,13 +29,64 @@
   text-align: center;
 }
 
-.inputSection  {
+.formTittle {
+  text-align: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.formTittle h1 {
+  font-family: "Manrope";
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 36px;
+  letter-spacing: -0.75px;
+  margin: 0;
+}
+
+.formTittle p {
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  color: #4e4350;
+}
+
+.inputSection {
   font-weight: 600;
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 1.2px;
-  gap: 8px;
   text-transform: uppercase;
+}
+
+.inputSection h3 {
+  font-family: "Inter";
+  display: flex;
+  padding: 0px 4px;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 16px;
+  color: #4e4350;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  color: #807381;
+  width: 16px;
+  height: 16px;
+  left: 327.98px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .inputHeader {
@@ -49,12 +100,14 @@
 }
 
 .inputHeader h3 {
-  color: #4E4350;
+  font-family: "Inter";
+  color: #4e4350;
   font-weight: 700;
   letter-spacing: 1.2px;
 }
 
 .forgotPass {
+  font-family: "Inter";
   letter-spacing: 0;
   color: #732993;
   font-weight: 700;
@@ -62,12 +115,12 @@
   background-color: white;
   border: none;
   font-size: 12px;
-  text-transform: uppercase;
   cursor: pointer;
 }
 
 .loginInput {
   width: 368px;
+  margin-top: 8px;
   padding: 18px 24px;
   border-radius: 12px;
   background-color: #f3f4f5;
@@ -83,24 +136,26 @@
   width: 368px;
   min-height: 56px;
   padding: 10px 20px;
-  background-color: #732993;
+  background-image: linear-gradient(to right, #732993, #8e44ad);
   border: none;
   border-radius: 12px;
   color: white;
   line-height: 28px;
   font-size: 18px;
   letter-spacing: 0px;
+  font-family: "Manrope";
   font-weight: 700;
   box-shadow:
     0 4px 6px -4px rgba(115, 41, 147, 0.2),
     0 10px 15px -3px rgba(115, 41, 147, 0.2);
 }
 
-.divider{
+.divider {
   display: flex;
   align-items: center;
   width: 368px;
   gap: 16px;
+  font-family: "Inter";
   font-weight: 700;
   font-size: 10px;
   line-height: 15px;
@@ -110,27 +165,30 @@
 
 .divider p {
   margin: 0;
-} 
+  color: #807381;
+}
 
 .divider::before,
 .divider::after {
-   content: ""; /*là thanh không cần chữ */
+  content: ""; /*là thanh không cần chữ */
   flex: 1;
   height: 1px;
   background: #e5e5e5;
 }
 
 .loginGoogle {
+  position: relative;
   width: 368px;
   min-height: 56px;
   padding: 10px 20px;
   background-color: #fff;
-  border: 1px solid #D1C2D24D;
+  border: 1px solid #d1c2d24d;
   border-radius: 12px;
-  color: #191C1D;
+  color: #191c1d;
   line-height: 24px;
   letter-spacing: 0px;
   font-size: 16px;
+  font-family: "Inter";
   font-weight: 600;
   align-items: center;
   box-shadow:
@@ -138,4 +196,28 @@
     0 10px 15px -3px rgba(115, 41, 147, 0.2);
 }
 
+.footerText {
+  margin-top: 32px;
+  font-family: "Inter";
+  max-width: 400px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 19.5px;
+  letter-spacing: 0;
+  color: #807381;
+}
 
+.googleImg {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.loginArrow {
+  margin-left: 8px;
+  width: 13.4px;
+}

@@ -5,24 +5,28 @@ import Admin from "./pages/Admin/admin";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Quang from "./pages/Quang/quang";
 import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
     <Router>
-      <div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/quang" element={<Quang />} />
-          <Route
-            path="/admin"
-            element={
-              <ProtectedRoute>
-                <Admin />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
+      <div className="appShell">
+        <Header />
+        <main className="appContent">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/quang" element={<Quang />} />
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute>
+                  <Admin />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </main>
         <Footer />
       </div>
     </Router>
