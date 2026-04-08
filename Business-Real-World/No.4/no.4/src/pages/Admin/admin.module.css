@@ -1,0 +1,395 @@
+.adminPage {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mainPanel {
+  display: flex;
+  flex-direction: column;
+}
+
+.full {
+  grid-column: span 2;
+}
+
+/* Sidebar */
+.navBar {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandBlock {
+  padding: 32px;
+  gap: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.brandTitle {
+  gap: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.brandIcon {
+  background-color: #732993;
+  border-radius: 4px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.logo {
+  font-family: "Manrope";
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+  line-height: 20px;
+  color: #7e22ce;
+  margin: 0;
+  padding: 0;
+}
+
+.brandDesc {
+  margin: 0;
+  padding: 0;
+}
+
+.subText {
+  color: #94a3b8;
+  font-family: "Manrope";
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 20px;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.navWrapper {
+  padding-left: 32px;
+  color: #475569;
+}
+
+.navItem {
+  background-color: #f8f9fa;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: #475569;
+  width: 80%;
+}
+
+.navItem:focus {
+  color: #7e22ce;
+  border-right: 4px solid #7e22ce;
+}
+
+.sidebarBottom {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebarBtn {
+  padding: 17.2px 21.6px;
+  border-top: 1px;
+  background-color: #f1f5f9;
+}
+
+.newBtn {
+  background-image: linear-gradient(to right, #732993, #8e44ad);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 63px;
+  color: #ffffff;
+  max-width: 212.8px;
+  font-family: "Manrope";
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0px;
+}
+
+.sidebarSetting {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 16px 32px 16px;
+  gap: 4px;
+}
+
+.logoutBtn {
+  background-color: #f3f4f5;
+  border: none;
+  color: #475569;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.footerItem {
+  border: none;
+  background-color: #f1f5f9;
+  color: #475569;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+/* Search */
+.topBar {
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 10px 32px;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(24px);
+}
+
+.searchBox {
+  flex: 1;
+  max-width: 520px;
+}
+
+.searchBox input {
+  width: 100%;
+  max-width: 100%;
+  height: 40px;
+  background: #f8fafc;
+  color: #0f172a;
+  border: 1px solid #dbe3ee;
+  border-radius: 14px;
+  padding: 0 18px;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.searchBox input::placeholder {
+  color: #94a3b8;
+}
+
+.searchBox input:focus {
+  background: #ffffff;
+  border-color: #7e22ce;
+  box-shadow: 0 0 0 4px rgba(126, 34, 206, 0.12);
+}
+
+.topBarRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topCircle {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: #f3f4f6;
+}
+
+/* Content */
+.content {
+  padding: 32px 32px;
+  gap: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pageHeader {
+  background-color: #f8f9fa;
+}
+
+.breadcrumb {
+  padding: 0;
+  margin: 0;
+  color: #732993;
+  font-family: "Inter";
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.contentTitle {
+  gap: 8px;
+}
+
+.title {
+  font-family: "Manrope";
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 40px;
+  letter-spacing: -0.9px;
+  margin: 32px 0 0 0;
+}
+
+.description {
+  margin: 0;
+  max-width: 672px;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.card {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 40px 56px 40px;
+  border-radius: 8px;
+  border-top: 4px solid #732993;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.form {
+  width: 100%;
+  max-width: 848px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.contentBox {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  max-width: 848px;
+}
+
+.contentHeader {
+  width: 100%;
+  background-color: #732993;
+  border-radius: 8px;
+  padding: 12px 24px;
+  color: #ffffff;
+}
+.contentHeader h3 {
+  margin: 0;
+  font-family: "Manrope";
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.35px;
+  text-transform: uppercase;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 48px;
+  row-gap: 32px;
+  width: 100%;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formLabel {
+  color: #7b3b93;
+  font-family: "Inter";
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.formInput {
+  width: 100%;
+  min-height: 56px;
+  border-radius: 8px;
+  padding: 16px;
+  border: none;
+  background-color: #f3f4f5;
+  color: #334155;
+}
+
+.formInput:focus,
+.formTextarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(115, 41, 147, 0.16);
+}
+
+.contentDesc {
+  width: 100%;
+}
+
+.formTextarea {
+  width: 100%;
+  max-width: 848px;
+  min-height: 192px;
+  border-radius: 8px;
+  padding: 24px 24px 144px;
+  border: none;
+  background-color: #f3f4f5;
+  resize: vertical;
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.discardBtn,
+.save {
+  border: none;
+  border-radius: 12px;
+  min-height: 40px;
+  padding: 0 18px;
+  font-weight: 700;
+  font-family: "Inter";
+  line-height: 24px;
+  letter-spacing: 0;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.discardBtn {
+  background: transparent;
+  color: #64748b;
+}
+
+.saveBtn {
+  color: #ffffff;
+  height: 48px;
+  max-width: 232.77px;
+  background: linear-gradient(90deg, #1883ce 0%, #3ea0ee 100%);
+  border: none;
+}
+
+.save {
+  color: #ffffff;
+
+  background: linear-gradient(90deg, #1883ce 0%, #3ea0ee 100%);
+}
