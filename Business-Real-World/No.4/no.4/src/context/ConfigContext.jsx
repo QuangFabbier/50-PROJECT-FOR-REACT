@@ -1,29 +1,20 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import initialConfigurations from "../data/data";
 
 const ConfigContext = createContext(null);
 
-const initialConfiguration = {
-  institutionName: "Scholarly Canvas University",
-  academicYear: "2026-2027",
-  primaryDomain: "Digital Learning & Research",
-  administrativeContact: "admin@scholarlycanvas.edu",
-  regulatoryFramework: "Higher Education Standard A1",
-  auditInterval: "Annual Review",
-  configurationOverviewNotes:
-    "Institution-wide academic and compliance configuration for the current cycle.",
-};
-
 export function ConfigProvider({ children }) {
-  const [configuration, setConfiguration] = useState(() => {
-    const saved = localStorage.getItem("config");
-    return saved ? JSON.parse(saved) : initialConfiguration;
+  const [configurations, setConfigurations] = useState(() => {
+    const saved = localStorage.getItem("configurations");
+    return saved ? JSON.parse(saved) : initialConfigurations;
   });
 
   useEffect(() => {
-    localStorage.setItem("config", JSON.stringify(configuration));
-  }, [configuration]);
+    localStorage.setItem("configurations", JSON.stringify(configurations));
+  }, [configurations]);
+
   return (
-    <ConfigContext.Provider value={{ configuration, setConfiguration }}>
+    <ConfigContext.Provider value={{ configurations, setConfigurations }}>
       {children}
     </ConfigContext.Provider>
   );

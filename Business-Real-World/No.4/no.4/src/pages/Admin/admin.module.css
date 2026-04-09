@@ -96,6 +96,7 @@
 }
 
 .navItem:focus {
+  background-color: #00ffff;
   color: #7e22ce;
   border-right: 4px solid #7e22ce;
 }
@@ -407,7 +408,32 @@
   background-color: #00ffff;
 }
 
-.active:focus {
+/* .active:focus {
   background-color: #00ffff;
   color: black;
+} */
+
+.accordionItem {
+  margin: 5px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.accordionHeader {
+  border: none;
+  padding: 10px 20px;
+  background-color: #732993;
+  color: #fff;
+  border-radius: 12px;
+}
+
+.accordionContent {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin: 20px;
+  column-gap: 50px;
+  row-gap: 50px;
 }

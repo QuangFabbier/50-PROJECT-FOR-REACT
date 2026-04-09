@@ -4,8 +4,13 @@ import { useState } from "react";
 import styles from "./admin.module.css";
 
 function Overview() {
-  const { configuration } = useConfig();
+  const { configurations } = useConfig();
   const navigate = useNavigate();
+  const [openId, setOpenId] = useState(null);
+
+  const handleToggle = (id) => {
+    setOpenId((prev) => (prev === id ? null : id));
+  };
 
   return (
     <>
@@ -14,87 +19,85 @@ function Overview() {
         <div className={styles.contentTitle}>
           <h1 className={styles.title}>Overview</h1>
           <p className={styles.description}>
-            Review the current global configuration for the Scholarly Canvas
-            ecosystem.
+            Click an institution name to view full configuration details.
           </p>
         </div>
       </div>
-
+      {/* Render danh sách */}
       <div className={styles.card}>
-        <div className={styles.form}>
-          <div className={styles.contentBox}>
-            <div className={styles.contentHeader}>
-              <h3>Current Configuration</h3>
-            </div>
+        {configurations.map((item) => (
+          <div key={item.id} className={styles.accordionItem}>
+            <button
+              type="button"
+              className={styles.accordionHeader}
+              onClick={() => handleToggle(item.id)}
+            >
+              <span>{item.institutionName}</span>
+            </button>
+            {/* Item  */}
+            {openId === item.id && (
+              <div className={styles.accordionContent}>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>Institution Name</label>
+                  <div className={styles.formInput}>{item.institutionName}</div>
+                </div>
 
-            <div className={styles.grid}>
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>Institution Name</label>
-                <div className={styles.formInput}>
-                  {configuration.institutionName}
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>Academic Year</label>
+                  <div className={styles.formInput}>{item.academicYear}</div>
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>Primary Domain</label>
+                  <div className={styles.formInput}>{item.primaryDomain}</div>
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>
+                    Administrative Contact
+                  </label>
+                  <div className={styles.formInput}>
+                    {item.administrativeContact}
+                  </div>
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>
+                    Regulatory Framework
+                  </label>
+                  <div className={styles.formInput}>
+                    {item.regulatoryFramework}
+                  </div>
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>Audit Interval</label>
+                  <div className={styles.formInput}>{item.auditInterval}</div>
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>
+                    Configuration Overview & Notes
+                  </label>
+                  <div className={styles.formTextarea}>
+                    {item.configurationOverviewNotes}
+                  </div>
+                </div>
+
+                {/* ChangeBtn */}
+                <div className={styles.actions}>
+                  <button
+                    type="button"
+                    className={styles.saveBtn}
+                    onClick={() => navigate(`/admin/configuration/${item.id}`)}
+                  >
+                    Change Configuration
+                  </button>
                 </div>
               </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>Academic Year</label>
-                <div className={styles.formInput}>
-                  {configuration.academicYear}
-                </div>
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>Primary Domain</label>
-                <div className={styles.formInput}>
-                  {configuration.primaryDomain}
-                </div>
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>
-                  Administrative Contact
-                </label>
-                <div className={styles.formInput}>
-                  {configuration.administrativeContact}
-                </div>
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>Regulatory Framework</label>
-                <div className={styles.formInput}>
-                  {configuration.regulatoryFramework}
-                </div>
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>Audit Interval</label>
-                <div className={styles.formInput}>
-                  {configuration.auditInterval}
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.contentDesc}>
-              <div className={`${styles.formGroup} ${styles.full}`}>
-                <label className={styles.formLabel}>
-                  Configuration Overview & Notes
-                </label>
-                <div className={styles.formTextarea}>
-                  {configuration.configurationOverviewNotes}
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.actions}>
-              <button
-                type="button"
-                className={styles.saveBtn}
-                onClick={() => navigate("/admin/configuration")}
-              >
-                Change Configuration
-              </button>
-            </div>
+            )}
           </div>
-        </div>
+        ))}
       </div>
     </>
   );

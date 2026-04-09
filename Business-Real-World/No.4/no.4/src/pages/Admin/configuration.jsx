@@ -1,14 +1,24 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useConfig } from "../../context/ConfigContext";
 import styles from "./admin.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 
 function Configuration() {
-  const { configuration, setConfiguration } = useConfig();
-  const [formData, setFormData] = useState(configuration);
+  const { id } = useParams();
   const navigate = useNavigate();
+  const { configurations, setConfigurations } = useConfig();
+
+  const selectedConfiguration = configurations.find(
+    (item) => item.id === Number(id),
+  );
+
+  const [formData, setFormData] = useState(selectedConfiguration);
+
+  if (!selectedConfiguration) {
+    return <div>Configuration not found.</div>;
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,12 +30,17 @@ function Configuration() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setConfiguration(formData);
+
+    const updatedConfigurations = configurations.map((item) =>
+      item.id === Number(id) ? formData : item,
+    );
+
+    setConfigurations(updatedConfigurations);
     navigate("/admin/overview");
   };
 
   const handleDiscard = () => {
-    setFormData(configuration);
+    setFormData(selectedConfiguration);
   };
 
   return (
@@ -35,8 +50,7 @@ function Configuration() {
         <div className={styles.contentTitle}>
           <h1 className={styles.title}>Configuration</h1>
           <p className={styles.description}>
-            Manage the global pedagogical parameters and administrative rulesets
-            for the Scholarly Canvas ecosystem.
+            Manage the selected institution configuration.
           </p>
         </div>
       </div>

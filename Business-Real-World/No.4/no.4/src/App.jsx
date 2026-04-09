@@ -37,10 +37,10 @@ function AppLayout() {
           >
             <Route index element={<Navigate to="overview" replace />} />
             <Route path="overview" element={<Overview />} />
-            <Route path="configuration" element={<Configuration />} />
+            <Route path="configuration/:id" element={<Configuration />} />
           </Route>
 
-          <Route path="*" element={<Navigate to="/admin" replace />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </main>
       <Footer />
