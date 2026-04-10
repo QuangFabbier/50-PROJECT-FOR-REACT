@@ -16,7 +16,7 @@ function Login() {
   const [input, setInput] = useState(initialData);
   const [isRedirecting, setIsRedirecting] = useState(false);
   const navigate = useNavigate();
-  const { isAuthenticated, error, loginWithRedirect } = useAuth0();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -133,7 +133,6 @@ function Login() {
           <img src={google} alt="Google" className={styles.googleImg} />
           {isRedirecting ? "Redirecting..." : "Login with Google"}
         </button>
-        {error ? <p>{error.message}</p> : null}
       </form>
       <div className={styles.footerText}>
         <p>

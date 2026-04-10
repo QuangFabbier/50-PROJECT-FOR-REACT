@@ -18,7 +18,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 
 function Admin() {
-  const { logout } = useAuth0();
+  const { logout, user } = useAuth0();
 
   const handleLogout = () => {
     logout({
@@ -118,7 +118,22 @@ function Admin() {
           <div className={styles.topBarRight}>
             <FontAwesomeIcon icon={faBars} />
             <FontAwesomeIcon icon={faBell} />
-            <div className={styles.topCircle}>s</div>
+            <div className={styles.blockAccount}>
+              <img
+                className={styles.accountImg}
+                src={user.picture}
+                alt={user.name}
+              />
+              <div className={styles.accountItem}>
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className={styles.test}
+                >
+                  Log Out
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 

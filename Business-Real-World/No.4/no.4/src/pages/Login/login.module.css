@@ -143,6 +143,7 @@
   letter-spacing: 0px;
   font-family: "Manrope";
   font-weight: 700;
+  cursor: pointer;
   box-shadow:
     0 4px 6px -4px rgba(115, 41, 147, 0.2),
     0 10px 15px -3px rgba(115, 41, 147, 0.2);
@@ -189,9 +190,7 @@
   font-family: "Inter";
   font-weight: 600;
   align-items: center;
-  box-shadow:
-    0 4px 6px -4px rgba(115, 41, 147, 0.2),
-    0 10px 15px -3px rgba(115, 41, 147, 0.2);
+  cursor: pointer;
 }
 
 .footerText {

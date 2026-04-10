@@ -437,3 +437,60 @@
   column-gap: 50px;
   row-gap: 50px;
 }
+
+.accountImg {
+  height: 40px;
+  width: 40px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: 2px solid #732993;
+}
+
+.blockAccount:hover .accountItem {
+  display: block;
+}
+
+.accountItem {
+  display: none;
+  padding: 0;
+  background-color: #732993;
+  position: absolute;
+  top: 125%;
+  right: -32%;
+  border-radius: 8px;
+  box-shadow:
+    0 12px 28px rgba(2, 6, 23, 0.16),
+    0 2px 6px rgba(2, 6, 23, 0.1);
+  z-index: 1;
+}
+
+.blockAccount {
+  position: relative;
+  cursor: pointer;
+}
+
+.test::after {
+  content: "";
+  border-width: 20px 27px;
+  border-style: solid;
+  border-color: transparent transparent #732993 transparent;
+  position: absolute;
+  right: 4px;
+  top: -29px;
+  z-index: 0;
+}
+
+.test {
+  border: none;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  white-space: nowrap;
+  width: 100%;
+  background-color: #732993;
+  cursor: pointer;
+  color: white;
+  border-radius: 8px;
+  z-index: 1;
+}
