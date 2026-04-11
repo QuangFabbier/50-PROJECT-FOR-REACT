@@ -420,6 +420,8 @@
   margin-bottom: 16px;
   overflow: hidden;
   background: #fff;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .accordionHeader {
@@ -428,14 +430,36 @@
   background-color: #732993;
   color: #fff;
   border-radius: 12px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.accordionPanel {
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  transition-property: max-height, opacity, transform, margin, padding;
+  transition-timing-function: ease;
 }
 
 .accordionContent {
   display: grid;
-  grid-template-columns: auto auto auto;
-  margin: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
   column-gap: 50px;
   row-gap: 50px;
+  align-items: stretch;
+}
+
+.accordionContent > * {
+  min-width: 0;
+}
+
+.accordionContent .formGroup {
+  height: 100%;
 }
 
 .accountImg {
@@ -493,4 +517,33 @@
   color: white;
   border-radius: 8px;
   z-index: 1;
+}
+
+.closed {
+  max-height: 0px;
+  opacity: 0;
+  transform: translateY(-6px);
+  margin: 0 20px;
+  padding: 0;
+  pointer-events: none;
+  transition-duration: 220ms, 180ms, 180ms, 220ms, 220ms;
+}
+
+.open {
+  max-height: 1400px;
+  opacity: 1;
+  transform: translateY(0);
+  margin: 20px;
+  padding-bottom: 4px;
+  transition-duration: 560ms, 420ms, 420ms, 560ms, 560ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordionPanel {
+    transition: none;
+  }
+}
+
+.optionChoice {
+  border-radius: 12px;
 }

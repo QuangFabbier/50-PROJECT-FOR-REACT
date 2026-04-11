@@ -122,11 +122,19 @@ function Configuration() {
                     value={formData.regulatoryFramework}
                     onChange={handleChange}
                   >
-                    <option value="">Select interval</option>
-                    <option value="Higher Education Standard A1">
+                    <option className={styles.optionChoice} value="">
+                      Select interval
+                    </option>
+                    <option
+                      className={styles.optionChoice}
+                      value="Higher Education Standard A1"
+                    >
                       Higher Education Standard A1
                     </option>
-                    <option value="Higher Education Standard A2">
+                    <option
+                      className={styles.optionChoice}
+                      value="Higher Education Standard A2"
+                    >
                       Higher Education Standard A2
                     </option>
                     <option value="Higher Education Standard B1">
