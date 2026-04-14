@@ -53,3 +53,15 @@ V. Công nghệ
 + Hasura (GraphQL API từ database)
 
 ```
+
+Flow FE GỌI ĐẾN SERVER
+
+React (muốn data)
+↓
+Apollo (dịch sang GraphQL + gửi request)
+↓
+Hasura (xử lý query)
+↓
+Neon (trả data)
+↓
+Hasura → Apollo → React

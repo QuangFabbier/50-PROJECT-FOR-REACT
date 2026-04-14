@@ -21,6 +21,10 @@
   margin: 0 auto;
 }
 
+.topBarIcon {
+  color: #732993;
+}
+
 .brandBlock {
   display: flex;
   align-items: center;

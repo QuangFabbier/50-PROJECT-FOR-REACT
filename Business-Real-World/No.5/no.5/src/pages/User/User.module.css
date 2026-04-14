@@ -83,25 +83,13 @@
   min-height: 226px;
   border: 1px dashed #cbd5e1;
   border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   color: #64748b;
   font-size: 14px;
   padding: 16px;
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  row-gap: 10px;
-  column-gap: 10px;
-}
-
-.itemBox {
-  background-color: green;
-  color: black;
-  box-shadow: #0f172a;
-  border-radius: 12px;
-}
-
-.itemImage {
-  background-color: white;
 }
 
 @media (max-width: 900px) {
