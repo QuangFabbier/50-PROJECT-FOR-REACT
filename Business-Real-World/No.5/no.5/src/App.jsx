@@ -7,7 +7,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import Home from "./pages/Home/Home";
-import Product from "./pages/Products/Product";
+import Detail from "./pages/Products/Detail";
 import Add from "./pages/Products/Add";
 import UserHome from "./pages/User/Home";
 import Likes from "./pages/User/Likes";
@@ -29,7 +29,7 @@ function AppLayout() {
           <Route path="/" element={<Navigate to="/home" replace />} />
 
           <Route path="/home" element={<Home />} />
-          <Route path="/detail" element={<Product />} />
+          <Route path="/detail/" element={<Detail />} />
           <Route path="/add" element={<Add />} />
 
           <Route path="/user" element={<Navigate to="/user/home" replace />} />

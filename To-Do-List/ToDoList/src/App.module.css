@@ -1,0 +1,69 @@
+.content {
+}
+
+.info {
+  display: flex;
+  justify-content: center;
+}
+
+.infoWrapper {
+  margin: 10px;
+}
+.input {
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.input p {
+  margin: 10px;
+}
+
+.inputBox {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 12px;
+  background-color: #f3f4f5;
+  border: none;
+}
+
+.inputBox:focus {
+  outline: 1px solid #00ffff;
+}
+
+.event {
+  display: flex;
+  justify-content: center;
+}
+
+.eventBtn {
+  margin: 5px;
+  padding: 12px 32px;
+  background-color: #8a2be2;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.contentList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* margin: 0 auto; */
+  /* text-align: center; */
+}
+
+.contentList h3 {
+  margin-bottom: 0;
+}
+
+.contentList ol {
+  padding: 0;
+  margin: 5px;
+}
+
+.listBox {
+}

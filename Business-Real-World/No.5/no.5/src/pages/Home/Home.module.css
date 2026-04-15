@@ -73,7 +73,6 @@
   margin-top: 18px;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
-  background: #f8fafc;
   min-height: 260px;
   padding: 16px;
 }
@@ -81,7 +80,6 @@
 .contentPlaceholder {
   height: 100%;
   min-height: 226px;
-  border: 1px dashed #cbd5e1;
   border-radius: 8px;
   text-align: center;
   color: #64748b;
@@ -94,10 +92,11 @@
 }
 
 .itemBox {
-  background-color: green;
+  background-color: #f8fafc;
   color: black;
-  box-shadow: #0f172a;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
   border-radius: 12px;
+  cursor: pointer;
 }
 
 .itemImage {
@@ -125,4 +124,90 @@
   .contentPlaceholder {
     min-height: 176px;
   }
+}
+
+/* Detail */
+.detailContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 18px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  min-height: 260px;
+  padding: 16px;
+}
+
+.itemPlaceholder {
+}
+.detailItem {
+  /* display: flex;
+  align-items: center;
+  justify-content: space-around; */
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 100px;
+  width: 1000px;
+}
+.detailImage {
+  width: 320px;
+}
+
+.itemTitle {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 900;
+}
+
+.cartButton {
+  padding: 12px 32px;
+  background-color: #732993;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.itemDesc p {
+  font-weight: 100;
+  color: gray;
+}
+
+.colorType {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 0 18px;
+}
+
+.colorType h3 {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 16px;
+  color: #0f172a;
+}
+
+.colorButton {
+  min-width: 76px;
+  padding: 8px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.colorButton:hover {
+  border-color: #732993;
+  color: #732993;
+  background: #f5eff9;
+}
+
+.colorButton:focus-visible {
+  outline: 2px solid #732993;
+  outline-offset: 2px;
 }
