@@ -1,79 +1,76 @@
-import React from "react";
 import { useState } from "react";
 import styles from "./App.module.css";
-
+import { v4 as uuidv4 } from "uuid";
 function App() {
-  const [todos, setTodos] = useState([]);
-  const [todo, setTodo] = useState("");
+  const emptyEmployee = {
+    empName: "",
+    age: "",
+    position: "",
+    address: "",
+  };
+
+  const [employees, setEmployees] = useState([]);
+  const [employee, setEmployee] = useState(emptyEmployee);
+  const [editting, setEditting] = useState(-1);
+
+  const handleChangeEmployee = (e) => {
+    const { name, value } = e.target;
+    setEmployee((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   const handleAdd = () => {
-    setTodos((prev) => [...prev, todo]);
-    setTodo({
+    setEmployees((prev) => [
+      ...prev,
+      {
+        id: uuidv4(),
+        empName: employee.empName,
+        age: employee.age,
+        position: employee.position,
+        address: employee.address,
+      },
+    ]);
+    setEmployee({
       empName: "",
       age: "",
       position: "",
       address: "",
     });
-    console.log("handleAdd");
-    console.log(todos);
-  };
-  const [index, setIndex] = useState(-1);
-
-  const setEmpName = (empName) => {
-    setTodo({
-      empName: empName,
-      age: todo.age,
-      position: todo.position,
-      address: todo.address,
-    });
-  };
-  const setAge = (age) => {
-    console.log(age);
-
-    setTodo({
-      empName: todo.empName,
-      age: age,
-      position: todo.position,
-      address: todo.address,
-    });
-  };
-  const setPosition = (position) => {
-    setTodo({
-      empName: todo.empName,
-      age: todo.age,
-      position: position,
-      address: todo.address,
-    });
-  };
-  const setAddress = (address) => {
-    setTodo({
-      empName: todo.empName,
-      age: todo.age,
-      position: todo.position,
-      address: address,
-    });
+    console.log("check id", employee.id);
   };
 
-  const handleDel = (index) => {
-    setTodos([
-      ...todos.slice(0, index),
-      ...todos.slice(index + 1, todos.length),
-    ]);
-    console.log("handleDel");
-    console.log(todos);
+  const handleDel = (id) => {
+    const updateEmployee = employees.filter((employee) => employee.id !== id);
+    setEmployees(updateEmployee);
   };
 
-  const handleFix = (index) => {
-    setTodo(todos[index]);
-    setIndex(index);
+  const handleEdit = (id) => {
+    const foundId = employees.find((newEmployee) => {
+      return newEmployee.id === id;
+    });
+    setEmployee({
+      empName: foundId.empName,
+      age: foundId.age,
+      position: foundId.position,
+      address: foundId.address,
+    });
+    setEditting(id);
+    console.log("bbbb", foundId);
   };
+
   const handleSubmit = () => {
-    setTodos([
-      ...todos.slice(0, index),
-      todo,
-      ...todos.slice(index + 1, todos.length),
-    ]);
-    setIndex(-1);
-    setTodo({
+    const updated = employees.map((newEmployee) =>
+      newEmployee.id === editting
+        ? { ...newEmployee, ...employee }
+        : newEmployee,
+    );
+
+    setEmployees(updated);
+
+    setEditting(-1);
+    setEmployee({
       empName: "",
       age: "",
       position: "",
@@ -81,8 +78,8 @@ function App() {
     });
   };
   const handleCancel = () => {
-    setIndex(-1);
-    setTodo({
+    setEditting(-1);
+    setEmployee({
       empName: "",
       age: "",
       position: "",
@@ -96,21 +93,21 @@ function App() {
           <div className={styles.input}>
             <p>Name</p>
             <input
-              id="empName"
+              name="empName"
               className={styles.inputBox}
               type="text"
-              value={todo.empName}
-              onChange={(e) => setEmpName(e.target.value)}
+              value={employee.empName}
+              onChange={handleChangeEmployee}
             ></input>
           </div>
           <div className={styles.input}>
             <p>Age</p>
             <input
-              id="age"
+              name="age"
               className={styles.inputBox}
               type="number"
-              value={todo.age}
-              onChange={(e) => setAge(e.target.value)}
+              value={employee.age}
+              onChange={handleChangeEmployee}
             ></input>
           </div>
         </div>
@@ -118,27 +115,28 @@ function App() {
           <div className={styles.input}>
             <p>Position</p>
             <input
-              id="position"
+              name="position"
               className={styles.inputBox}
               type="text"
-              value={todo.position}
-              onChange={(e) => setPosition(e.target.value)}
+              value={employee.position}
+              onChange={handleChangeEmployee}
             ></input>
           </div>
           <div className={styles.input}>
             <p>Address</p>
             <input
-              id="address"
+              name="address"
               className={styles.inputBox}
               type="text"
-              value={todo.address}
-              onChange={(e) => setAddress(e.target.value)}
+              value={employee.address}
+              onChange={handleChangeEmployee}
+              // onChange={(e) => setAddress(e.target.value)}
             ></input>
           </div>
         </div>
       </div>
       <div className={styles.event}>
-        {index === -1 ? (
+        {editting === -1 ? (
           <button className={styles.eventBtn} onClick={handleAdd}>
             Add
           </button>
@@ -147,7 +145,7 @@ function App() {
             Submit
           </button>
         )}
-        {index !== -1 ? (
+        {editting !== -1 ? (
           <button className={styles.eventBtn} onClick={handleCancel}>
             Cancel
           </button>
@@ -156,26 +154,32 @@ function App() {
       <div className={styles.contentList}>
         <h3>To do list</h3>
         <ol className={styles.list}>
-          {todos.map((todo, index) => (
-            <li className={styles.listBox}>
-              <p>Name: {todo.empName}</p>
-              <p>Age: {todo.age}</p>
-              <p>Position: {todo.position}</p>
-              <p>Address:{todo.address}</p>
-              <button
-                className={styles.eventBtn}
-                onClick={() => handleFix(index)}
-              >
-                Fix
-              </button>
-              <button
-                className={styles.eventBtn}
-                onClick={() => handleDel(index)}
-              >
-                Delete
-              </button>
-            </li>
-          ))}
+          {employees.map((employee, index, employees) => {
+            console.log("test", employee);
+            console.log("test 2", index);
+            console.log("test 3", employees);
+
+            return (
+              <li className={styles.listBox} key={employee.id} data={employee}>
+                <p>Name: {employee.empName}</p>
+                <p>Age: {employee.age}</p>
+                <p>Position: {employee.position}</p>
+                <p>Address:{employee.address}</p>
+                <button
+                  className={styles.eventBtn}
+                  onClick={() => handleEdit(employee.id)}
+                >
+                  Edit
+                </button>
+                <button
+                  className={styles.eventBtn}
+                  onClick={() => handleDel(employee.id)}
+                >
+                  Delete
+                </button>
+              </li>
+            );
+          })}
         </ol>
       </div>
     </div>
