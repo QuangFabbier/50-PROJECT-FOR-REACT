@@ -4,10 +4,11 @@ import { v4 as uuidv4 } from "uuid";
 function App() {
   const emptyEmployee = {
     empName: "",
-    age: "",
+    quang: "",
     position: "",
     address: "",
   };
+  console.log("check 1", emptyEmployee);
 
   const [employees, setEmployees] = useState([]);
   const [employee, setEmployee] = useState(emptyEmployee);
@@ -15,6 +16,8 @@ function App() {
 
   const handleChangeEmployee = (e) => {
     const { name, value } = e.target;
+    console.log("check 2", e.target.name);
+
     setEmployee((prev) => ({
       ...prev,
       [name]: value,
@@ -107,6 +110,7 @@ function App() {
               className={styles.inputBox}
               type="number"
               value={employee.age}
+              data="hello world"
               onChange={handleChangeEmployee}
             ></input>
           </div>
