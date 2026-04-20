@@ -74,6 +74,32 @@
   background: #1d4ed8;
 }
 
+.editActions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+}
+
+.editActions .addButton,
+.cancelButton {
+  flex: 1;
+}
+
+.cancelButton {
+  height: 38px;
+  border: 1px solid #fdba74;
+  border-radius: 6px;
+  background: #fff7ed;
+  color: #c2410c;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  background: #ffedd5;
+}
+
 .tableWrap {
   overflow-x: auto;
 }

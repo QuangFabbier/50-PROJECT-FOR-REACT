@@ -3,7 +3,7 @@ import styles from "../src/App.module.css";
 
 const employeesInit = [];
 
-for (let index = 0; index < 20; index++) {
+for (let index = 0; index < 30; index++) {
   const element = {
     id: index,
     name: `Nguyen van a ${index}`,
@@ -17,40 +17,75 @@ for (let index = 0; index < 20; index++) {
 function App() {
   const [employees, setEmployees] = useState(employeesInit);
   const [employeeSelected, setEmployeeSelected] = useState({
+    id: "",
     name: "",
     position: "",
     address: "",
     age: "",
   });
-  console.log("🚀 ~ App ~ employeeSelected:", employeeSelected);
 
   const handleChange = (e) => {
     setEmployeeSelected((pre) => ({
       ...pre,
       [e.target.name]: e.target.value,
     }));
-    console.log("check 1", employeeSelected);
-    console.log("check 3", employees);
   };
 
   const handleAddEmp = () => {
-    setEmployees((pre) => [...pre, employeeSelected]);
+    setEmployees((pre) => {
+      return [{ ...employeeSelected, id: Date.now() }, ...pre];
+    });
     setEmployeeSelected({
+      id: "",
       name: "",
       position: "",
       address: "",
       age: "",
     });
-    console.log("check 2", employees);
-    console.log("check 4", employeeSelected);
   };
 
   const handleDelEmp = (id) => {
     const newEmployee = employees.filter(
       (employeeSelected) => employeeSelected.id !== id,
     );
+    setEmployees(newEmployee);
   };
 
+  const [editting, setEditting] = useState(false);
+  // const handleEditEmp = (id) => {
+  //   const updatedEmp = employees.find((employee) => employee.id === id);
+  //   console.log("🚀 ~ handleEditEmp ~ updatedEmp:", updatedEmp);
+  //   console.log("checkkkk", updatedEmp);
+
+  //   setEmployeeSelected(updatedEmp);
+  //   setEditting(true);
+  // };
+
+  const handleEditEmp = (employee) => {
+    setEmployeeSelected(employee);
+    console.log("🚀 ~ handleEditEmp ~ employee:", employee);
+    setEditting(true);
+  };
+
+  const handleSubmit = () => {
+    setEmployees(submitEmp);
+    setEditting(false);
+    setEmployeeSelected({
+      name: "",
+      position: "",
+      address: "",
+      age: "",
+    });
+  };
+  const handleCancel = () => {
+    setEditting(false);
+    setEmployeeSelected({
+      name: "",
+      position: "",
+      address: "",
+      age: "",
+    });
+  };
   return (
     <div className={styles.page}>
       <h1 className={styles.title}>Employee Management</h1>
@@ -103,13 +138,32 @@ function App() {
             />
           </label>
 
-          <button
-            type="button"
-            className={styles.addButton}
-            onClick={handleAddEmp}
-          >
-            Them
-          </button>
+          {editting === 0 ? (
+            <button
+              type="button"
+              className={styles.addButton}
+              onClick={handleAddEmp}
+            >
+              Them
+            </button>
+          ) : (
+            <div className={styles.editActions}>
+              <button
+                type="button"
+                className={styles.addButton}
+                onClick={handleSubmit}
+              >
+                Sửa
+              </button>
+              <button
+                type="button"
+                className={styles.cancelButton}
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
+            </div>
+          )}
         </form>
       </section>
 
@@ -131,7 +185,7 @@ function App() {
               {employees.map((employee, index) => {
                 return (
                   <tr key={index}>
-                    <td>{employee.id}</td>
+                    <td>{index + 1}</td>
                     <td>{employee.name}</td>
                     <td>{employee.position}</td>
                     <td>{employee.address}</td>
@@ -144,7 +198,12 @@ function App() {
                         >
                           Delete
                         </button>
-                        <button className={styles.actionBtn}>Edit</button>
+                        <button
+                          className={styles.actionBtn}
+                          onClick={() => handleEditEmp(employee)}
+                        >
+                          Edit
+                        </button>
                       </div>
                     </td>
                   </tr>
