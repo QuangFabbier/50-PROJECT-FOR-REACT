@@ -68,7 +68,15 @@ function App() {
   };
 
   const handleSubmit = () => {
-    setEmployees(submitEmp);
+    const submit = employees.map((employeee) => {
+      console.log("🚀 ~ handleSubmit ~ employeeSelected:", employeeSelected);
+      console.log("🚀 ~ handleSubmit ~ employeee:", employeee);
+      return employeee.id === employeeSelected.id
+        ? employeeSelected
+        : employeee;
+    });
+
+    setEmployees(submit);
     setEditting(false);
     setEmployeeSelected({
       name: "",
@@ -138,7 +146,7 @@ function App() {
             />
           </label>
 
-          {editting === 0 ? (
+          {editting === false ? (
             <button
               type="button"
               className={styles.addButton}

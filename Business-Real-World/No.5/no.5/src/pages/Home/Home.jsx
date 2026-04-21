@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Home.module.css";
 import { gql } from "@apollo/client";
+import { useNavigate } from "react-router";
 import { useQuery } from "@apollo/client/react";
 
 function Home() {
@@ -47,6 +48,7 @@ function Home() {
 
   // if (loading) return <p>Loading...</p>;
   // if (error) return <p>Error...</p>;
+  const navigate = useNavigate();
   return (
     <section className={styles.page}>
       <div className={styles.pageHeader}>
@@ -63,6 +65,9 @@ function Home() {
       <div className={styles.card}>
         <div className={styles.panelHeader}>
           <h3>Home Overview</h3>
+          <button className={styles.btnAdd} onClick={() => navigate("/add")}>
+            Add New
+          </button>
         </div>
 
         <div className={styles.panelContent}>
