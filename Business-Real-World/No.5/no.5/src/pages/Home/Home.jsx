@@ -4,6 +4,7 @@ import { gql } from "@apollo/client";
 import { useNavigate } from "react-router";
 import { useQuery } from "@apollo/client/react";
 
+import products from "../Products/Add";
 function Home() {
   const GET_PRODUCTS = gql`
     query {

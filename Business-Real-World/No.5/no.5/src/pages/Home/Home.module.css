@@ -1,3 +1,4 @@
+/* Home */
 .page {
   display: flex;
   flex-direction: column;
@@ -121,27 +122,204 @@
   background-color: white;
 }
 
-@media (max-width: 900px) {
-  .page {
-    padding: 8px 0;
-  }
+/* Add */
+.contentAdd {
+  padding: 8px;
+}
 
-  .title {
-    font-size: 30px;
-    line-height: 34px;
-  }
+.addForm {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
 
-  .card {
-    padding: 14px;
-  }
+.uploadBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
-  .panelContent {
-    min-height: 210px;
-  }
+.formSectionLabel {
+  margin: 0;
+  color: #0f172a;
+  font-family: "Manrope", sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+}
 
-  .contentPlaceholder {
-    min-height: 176px;
-  }
+.uploadBox {
+  min-height: 320px;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #faf5ff 0%, #ffffff 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.uploadBox:hover {
+  border-color: #732993;
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px rgba(115, 41, 147, 0.08);
+}
+
+.uploadBox:last-child {
+  padding: 0;
+  position: relative;
+}
+
+.imageBox {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  border-radius: 18px;
+}
+
+.cancelBtn {
+  position: absolute;
+  border-radius: 5px;
+  top: 2%;
+  right: 3%;
+  /* top: 50%;
+  right: 55%; */
+  z-index: 1000;
+  border: none;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.cancelBtn:hover {
+  background-color: #df993e;
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px rgba(115, 41, 147, 0.08);
+}
+
+.fileInput {
+  display: none;
+}
+
+.uploadIcon {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #732993;
+  color: #ffffff;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.uploadTitle {
+  color: #0f172a;
+  font-family: "Manrope", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.uploadHint {
+  max-width: 220px;
+  color: #64748b;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formFieldFull {
+  grid-column: 1 / -1;
+}
+
+.formLabel {
+  color: #334155;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.formInput {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 13px 14px;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.formInput::placeholder {
+  color: #94a3b8;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #732993;
+  box-shadow: 0 0 0 4px rgba(115, 41, 147, 0.12);
+}
+
+.formTextarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.formActions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submitButton {
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #732993 0%, #8b36ac 100%);
+  color: #ffffff;
+  padding: 12px 24px;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(115, 41, 147, 0.18);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.submitButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 28px rgba(115, 41, 147, 0.24);
 }
 
 /* Detail */
@@ -228,4 +406,40 @@
 .colorButton:focus-visible {
   outline: 2px solid #732993;
   outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .page {
+    padding: 8px 0;
+  }
+
+  .title {
+    font-size: 30px;
+    line-height: 34px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .panelContent {
+    min-height: 210px;
+  }
+
+  .contentPlaceholder {
+    min-height: 176px;
+  }
+
+  .addForm {
+    grid-template-columns: 1fr;
+  }
+
+  .uploadBox {
+    min-height: 220px;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
 }
