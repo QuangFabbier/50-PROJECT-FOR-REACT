@@ -1,55 +1,32 @@
 import React from "react";
-import styles from "./Home.module.css";
 import { gql } from "@apollo/client";
-import { useNavigate } from "react-router";
 import { useQuery } from "@apollo/client/react";
+import { useNavigate } from "react-router-dom";
+import styles from "./Home.module.css";
 
-import products from "../Products/Add";
-function Home() {
-  const GET_PRODUCTS = gql`
-    query {
-      products {
-        id
-        title
-        description
-        img_url
-      }
+const GET_PRODUCTS = gql`
+  query GetProducts {
+    products(order_by: { created_at: desc }) {
+      id
+      title
+      color
+      size
+      price
+      description
+      created_at
     }
-  `;
+  }
+`;
 
-  const product = [
-    {
-      id: "1",
-      title: "Ao",
-      description: "Ao de mac",
-      image_url: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
-    },
-    {
-      id: "2",
-      title: "Quan",
-      description: "quan de mac",
-      image_url:
-        "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png",
-    },
-    {
-      id: "3",
-      title: "kinh",
-      description: "kinh de deo",
-      image_url: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
-    },
-    {
-      id: "4",
-      title: "mu",
-      description: "mu de doi",
-      image_url: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
-    },
-  ];
-
-  const { loading, error, data } = useQuery(GET_PRODUCTS);
-
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error...</p>;
+function Home() {
   const navigate = useNavigate();
+  const { loading, error, data } = useQuery(GET_PRODUCTS, {
+    fetchPolicy: "network-only",
+  });
+
+  const products = data?.products ?? [];
+  console.log("🚀 ~ Home ~ products:", products);
+
   return (
     <section className={styles.page}>
       <div className={styles.pageHeader}>
@@ -57,8 +34,7 @@ function Home() {
         <div className={styles.contentTitle}>
           <h1 className={styles.title}>Home</h1>
           <p className={styles.description}>
-            Product management overview panel. Data section is intentionally
-            empty for now.
+            Product management overview panel connected to the database.
           </p>
         </div>
       </div>
@@ -73,17 +49,34 @@ function Home() {
 
         <div className={styles.panelContent}>
           <div className={styles.contentPlaceholder}>
-            {product.reverse().map((item) => (
-              <div key={item.id} className={styles.itemBox}>
-                <img
-                  src={item.image_url}
-                  width="120"
-                  className={styles.itemImage}
-                />
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </div>
-            ))}
+            {loading && <p>Loading...</p>}
+            {error && <p>Error...</p>}
+
+            {!loading && !error && products.length === 0 ? (
+              <p>No products found.</p>
+            ) : null}
+
+            {!loading && !error
+              ? products.map((item) => (
+                  <div
+                    key={item.id}
+                    className={styles.itemBox}
+                    onClick={() => navigate(`/detail/${item.id}`)}
+                  >
+                    {/* <img
+                      src={item.image_url}
+                      width="120"
+                      className={styles.itemImage}
+                      alt={item.title}
+                    /> */}
+                    <h3>{item.title}</h3>
+                    <p>Price: {item.price}</p>
+                    <p>Color:{item.color}</p>
+                    <p>Size:{item.size}</p>
+                    <p>Desc: {item.description}</p>
+                  </div>
+                ))
+              : null}
           </div>
         </div>
       </div>

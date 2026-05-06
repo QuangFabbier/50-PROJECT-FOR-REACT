@@ -4,8 +4,8 @@ import styles from "./Sidebar.module.css";
 
 const adminMenuItems = [
   { label: "Home", to: "/home", icon: "H" },
-  { label: "Detail", to: "/detail", icon: "D" },
   { label: "Add", to: "/add", icon: "A" },
+  { label: "Detail", to: "/detail", icon: "D" },
 ];
 
 const userMenuItems = [

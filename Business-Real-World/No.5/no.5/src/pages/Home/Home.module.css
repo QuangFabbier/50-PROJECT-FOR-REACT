@@ -134,6 +134,14 @@
   align-items: start;
 }
 
+.addForm > .formGrid:first-child,
+.addForm > .formActions {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: 820px;
+  justify-self: center;
+}
+
 .uploadBlock {
   display: flex;
   flex-direction: column;
@@ -289,6 +297,65 @@
   box-shadow: 0 0 0 4px rgba(115, 41, 147, 0.12);
 }
 
+.colorField {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.test {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 13px 14px;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.colorLabel {
+  color: #334155;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.addColor {
+  appearance: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  margin: 3px;
+}
+
+.addColor:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(148, 7, 208);
+}
+
+.colorBtn {
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #732993 0%, #8b36ac 100%);
+  color: #ffffff;
+  padding: 10px 15px;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(115, 41, 147, 0.18);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
 .formTextarea {
   min-height: 140px;
   resize: vertical;
@@ -324,88 +391,84 @@
 
 /* Detail */
 .detailContent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-top: 18px;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   min-height: 260px;
-  padding: 16px;
+  padding: 20px;
+  background: #ffffff;
 }
 
-.itemPlaceholder {
-}
 .detailItem {
-  /* display: flex;
-  align-items: center;
-  justify-content: space-around; */
-  display: grid;
-  grid-template-columns: auto auto;
-  column-gap: 100px;
-  width: 1000px;
-}
-.detailImage {
-  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
 }
 
 .itemTitle {
   display: flex;
-  justify-content: space-between;
-  font-weight: 900;
-}
-
-.cartButton {
-  padding: 12px 32px;
-  background-color: #732993;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  width: 100%;
-}
-
-.itemDesc p {
-  font-weight: 100;
-  color: gray;
-}
-
-.colorType {
-  display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
-  margin: 14px 0 18px;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e2e8f0;
 }
 
-.colorType h3 {
-  flex-basis: 100%;
+.detailName {
   margin: 0;
-  font-size: 16px;
+  color: #0f172a;
+  font-family: "Manrope", sans-serif;
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.detailPrice {
+  margin: 0;
+  white-space: nowrap;
+  font-size: 18px;
+  font-weight: 800;
+  color: #732993;
+}
+
+.detailInfo {
+  display: grid;
+  gap: 10px;
+}
+
+.detailInfo p {
+  margin: 0;
+  color: #334155;
+  font-size: 15px;
+}
+
+.itemDesc {
+  display: grid;
+  gap: 10px;
+}
+
+.detailActions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.itemDesc h3 {
+  margin: 0;
+  font-size: 18px;
   color: #0f172a;
 }
 
-.colorButton {
-  min-width: 76px;
-  padding: 8px 14px;
-  border: 1px solid #cbd5e1;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #334155;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
+.detailDescriptionText {
+  margin: 0;
+  color: #475569;
+  font-size: 15px;
+  line-height: 1.7;
 }
 
-.colorButton:hover {
-  border-color: #732993;
-  color: #732993;
-  background: #f5eff9;
-}
-
-.colorButton:focus-visible {
-  outline: 2px solid #732993;
-  outline-offset: 2px;
+.detailMessage {
+  color: #475569;
+  font-size: 15px;
 }
 
 /* Responsive */
@@ -441,5 +504,22 @@
 
   .formGrid {
     grid-template-columns: 1fr;
+  }
+
+  .detailContent {
+    padding: 16px;
+  }
+
+  .itemTitle {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .detailName {
+    font-size: 24px;
+  }
+
+  .detailPrice {
+    font-size: 16px;
   }
 }

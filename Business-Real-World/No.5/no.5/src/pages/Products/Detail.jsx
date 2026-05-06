@@ -1,19 +1,32 @@
 import React from "react";
 import styles from "../Home/Home.module.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client/react";
+import { gql } from "@apollo/client";
+
+const GET_PRODUCT_DETAIL = gql`
+  query GetProductDetail($id: Int!) {
+    products_by_pk(id: $id) {
+      id
+      title
+      description
+      price
+      color
+      size
+    }
+  }
+`;
 
 function Detail() {
-  const product = [
-    {
-      id: "1",
-      title: "Ao",
-      description:
-        "Ao de mac Ao de mac Ao de mac Ao de mac Ao de mac Ao de mac Ao de mac Ao de mac Ao de mac Ao de mac Ao de mac Ao de mac Ao de mac Ao de mac",
-      price: "20.000.000đ",
-      image_url: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
-    },
-  ];
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { loading, error, data } = useQuery(GET_PRODUCT_DETAIL, {
+    variables: {
+      id: Number(id),
+    },
+  });
+  const product = data?.products_by_pk;
+
   return (
     <section className={styles.page}>
       <div className={styles.pageHeader}>
@@ -21,43 +34,74 @@ function Detail() {
         <div className={styles.contentTitle}>
           <h1 className={styles.title}>Detail</h1>
           <p className={styles.description}>
-            Product detail panel skeleton. Data fields will be added later.
+            Review the selected product information in a cleaner summary view.
           </p>
         </div>
       </div>
 
       <div className={styles.card}>
         <div className={styles.panelHeader}>
-          <h3>Detail Panel</h3>
+          <h3>Product Detail</h3>
         </div>
 
         <div className={styles.detailContent}>
-          <div className={styles.itemPlaceholder}>
-            {product.map((item) => (
-              <div key={item.id} className={styles.detailItem}>
-                <img src={item.image_url} className={styles.detailImage} />
-                <div>
-                  <div className={styles.itemTitle}>
-                    <h3>{item.title}</h3>
-                    <h3>{item.price}</h3>
-                  </div>
-                  <div className={styles.colorType}>
-                    <h3>Size</h3>
-                    <button className={styles.colorButton}>Black</button>
-                    <button className={styles.colorButton}>White</button>
-                    <button className={styles.colorButton}>Green</button>
-                  </div>
-                  <div className={styles.cartButton}>
-                    <button className={styles.cartButton}>Add to cart</button>
-                  </div>
-                  <div className={styles.itemDesc}>
-                    <h3>Description</h3>
-                    <p>{item.description}</p>
-                  </div>
-                </div>
+          {loading && (
+            <div className={styles.detailMessage}>
+              <p>Loading product...</p>
+            </div>
+          )}
+
+          {error && (
+            <div className={styles.detailMessage}>
+              <p>
+                {error.message || "Something went wrong while fetching data."}
+              </p>
+            </div>
+          )}
+
+          {!loading && !error && !product ? (
+            <div className={styles.detailMessage}>
+              <p>No product found.</p>
+            </div>
+          ) : null}
+
+          {product && (
+            <div className={styles.detailItem}>
+              <div className={styles.itemTitle}>
+                <h2 className={styles.detailName}>{product.title}</h2>
+                <p className={styles.detailPrice}>{product.price}</p>
               </div>
-            ))}
-          </div>
+
+              <div className={styles.detailInfo}>
+                <p>
+                  <strong>ID:</strong> {product.id}
+                </p>
+                <p>
+                  <strong>Color:</strong> {product.color || "-"}
+                </p>
+                <p>
+                  <strong>Size:</strong> {product.size || "-"}
+                </p>
+              </div>
+
+              <div className={styles.itemDesc}>
+                <h3>Description</h3>
+                <p className={styles.detailDescriptionText}>
+                  {product.description || "No description available."}
+                </p>
+              </div>
+
+              <div className={styles.detailActions}>
+                <button
+                  className={styles.submitButton}
+                  type="button"
+                  onClick={() => navigate(`/edit/${product.id}`)}
+                >
+                  Edit product
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

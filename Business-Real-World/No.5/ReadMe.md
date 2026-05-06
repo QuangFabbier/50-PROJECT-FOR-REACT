@@ -60,8 +60,16 @@ React (muốn data)
 ↓
 Apollo (dịch sang GraphQL + gửi request)
 ↓
-Hasura (xử lý query)
+Hasura (xử lý query, tự tạo API thêm sửa xóa)
 ↓
 Neon (trả data)
 ↓
 Hasura → Apollo → React
+
+Workflow xử lí nút add
+-User chọn file ảnh từ máy
+-> React giữ file đó trong state, tạo preview
+-> Khi add, react upload file lên cloudinary
+-> Cloudinary trả về 1 link ảnh thật
+-> React lấy link đó gửi lên Hasura
+-> Hasura lưu link đó vào DB cùng với thông tin sản phẩm

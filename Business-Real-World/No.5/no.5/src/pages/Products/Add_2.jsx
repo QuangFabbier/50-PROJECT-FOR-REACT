@@ -1,89 +1,51 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
 import styles from "../Home/Home.module.css";
-// import { faX } from "@fortawesome/free-solid-svg-icons";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useMutation } from "@apollo/client/react";
 import { gql } from "@apollo/client";
-
-const INSERT_PRODUCT = gql`
-  mutation InsertProducts($data: products_insert_input!) {
-    insert_products_one(object: $data) {
-      id
-      title
-      description
-      color
-      size
-    }
-  }
-`;
-// const UPDATE_PRODUCTION = gql`
-//   mutation UpdateReview($id: Date.now(), $text: String!) {
-//     update_reviews_by_pk(pk_columns: { id: $id }, _set: { text: $text }) {
-//       id
-//       text
-//     }
-//   }
-// `;
+import { useMutation } from "@apollo/client/react";
+// import { useNavigate } from "react-router";
 
 const emptyProduct = {
-  // image_url: "",
-  id: "",
+  image_url: "",
   title: "",
   price: "",
-  description: "",
   color: "",
-  size: "",
+  description: "",
 };
 
-const color = ["red", "blue", "green", "yellow", "white", "black", "brown"];
-const size = ["sm", "s", "m", "l", "xl", "xxl", "xsm"];
-
 function Add() {
+  const [products, setProducts] = useState([]);
   const [productSelector, setProductSelector] = useState(emptyProduct);
-  // console.log("🚀 ~ Add ~ productSelector:", productSelector);
-  // const [previewUrl, setPreviewUrl] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState("");
 
-  const [insertProduct] = useMutation(INSERT_PRODUCT);
+  // const navigate = useNavigate();
 
-  const navigate = useNavigate();
-  //* Upload Image logic
-  // const handleUpload = (e) => {
-  //   const file = e.target.files[0];
-  //   if (!file) {
-  //     return;
-  //   }
-  //   const newUrl = URL.createObjectURL(file);
-  //   // console.log("🚀 ~ handleUpload ~ newUrl:", newUrl);
-  //   // console.log("🚀 ~ handleUpload ~ file:", file);
-  //   setProductSelector((prev) => {
-  //     return {
-  //       ...prev,
-  //       image_url: newUrl,
-  //     };
-  //   });
-  //   // console.log("🚀 ~ handleUpload ~ URL:", URL.createObjectURL(file));
-  // };
-  // // console.log("🚀 ~ Add ~ previewUrl:", previewUrl);
+  const handleUpload = (e) => {
+    // console.log("🚀 ~ handleUpload ~ e.target.files:", e.target.files);
+    // const url = URL.createObjectURL(e.target.files[0]);
+    // setProductSelector({ ...productSelector, image: url });
+    const file = e.target.files[0];
+    if (!file) {
+      return;
+    }
+    setSelectedFile(file);
+    setPreviewUrl(URL.createObjectURL(file));
+  };
 
-  // // useEffect(() => {
-  // //   console.log("🚀 ~ image_url::", productSelector.image_url);
-  // // }, [productSelector.image_url]);
+  const handleCancel = (e) => {
+    e.preventDefault();
+    setSelectedFile(null);
+    setPreviewUrl("");
+  };
 
-  // const handleCancelImg = (e) => {
-  //   e.preventDefault();
-  //   setProductSelector(emptyProduct.image_url);
-  // };
-
-  // console.log(
-  //   "🚀 ~ handleCancel ~ emptyProduct.image_url:",
-  //   productSelector.image_url,
-  // );
-  //* Add record Logic
+  useEffect(() => {
+    console.log("test", productSelector);
+  }, [productSelector]);
 
   const handleChange = (e) => {
     e.preventDefault();
-
     setProductSelector((prev) => {
       return {
         ...prev,
@@ -91,22 +53,64 @@ function Add() {
       };
     });
   };
-  // console.log("111", productSelector);
-
   const handleAdd = async (e) => {
     e.preventDefault();
-    // console.log("111", productSelector);
-    console.log(productSelector);
-    await insertProduct({
-      variables: {
-        data: productSelector,
-      },
-    });
 
-    alert("Add success");
-    console.log("🚀 ~ handleAdd ~ Add success");
-    // setProductSelector(emptyProduct);
-    navigate("/home");
+    const INSERT_PRODUCT = gql`
+      mutation InsertProduct($object: products_insert_input!) {
+        insert_products_one(object: $object) {
+          id
+          title
+          description
+          image_url
+          created_at
+        }
+      }
+    `;
+
+    const imageUrl = await uploadImageToCloudinary(selectedFile);
+
+    setProducts((prev) => {
+      return [
+        ...prev,
+        {
+          ...productSelector,
+          image_url: imageUrl,
+          id: Date.now(),
+        },
+      ];
+    });
+    setProductSelector(emptyProduct);
+    setPreviewUrl("");
+    setSelectedFile(null);
+    // navigate("/home");
+  };
+
+  const uploadImageToCloudinary = async (file) => {
+    const formData = new FormData();
+
+    formData.append("file", file);
+    formData.append("upload_preset", "product_img");
+
+    console.log("🚀 ~ uploadImageToCloudinary ~ file:", file);
+
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dgdnyyqwu/image/upload",
+      {
+        method: "POST",
+        body: formData,
+      },
+    );
+
+    const data = await res.json();
+
+    console.log("🚀 ~ uploadImageToCloudinary ~ data:", data);
+    console.log(
+      "🚀 ~ uploadImageToCloudinary ~ data.secure_url:",
+      data.secure_url,
+    );
+
+    return data.secure_url;
   };
 
   return (
@@ -129,9 +133,10 @@ function Add() {
         <div className={styles.panelContent}>
           <div className={styles.contentAdd}>
             <form className={styles.addForm}>
-              {/* <div className={styles.uploadBlock}>
+              <div className={styles.uploadBlock}>
                 <p className={styles.formSectionLabel}>Product image</p>
-                {!productSelector.image_url ? (
+                {/* previewUrl */}
+                {previewUrl === "" ? (
                   <label className={styles.uploadBox}>
                     <input
                       name="image_url"
@@ -139,7 +144,6 @@ function Add() {
                       type="file"
                       accept=".png, .jpg, .jpeg"
                       onChange={handleUpload}
-                      // required
                     />
                     <span className={styles.uploadIcon}>+</span>
                     <span className={styles.uploadTitle}>
@@ -155,26 +159,27 @@ function Add() {
                     <div className={styles.uploadBox}>
                       <button
                         className={styles.cancelBtn}
-                        onClick={handleCancelImg}
+                        onClick={handleCancel}
                       >
                         <FontAwesomeIcon icon={faX} />
                       </button>
 
                       <img
                         className={styles.imageBox}
-                        src={productSelector.image_url}
-                        alt="anh san pham"
+                        src={previewUrl}
+                        alt="Product preview"
                       />
                     </div>
                   </>
-                )} 
-              </div>*/}
+                )}
+              </div>
 
               <div className={styles.formGrid}>
                 <label className={styles.formField}>
                   <span className={styles.formLabel}>Title</span>
                   <input
                     name="title"
+                    value={productSelector.title}
                     className={styles.formInput}
                     type="text"
                     placeholder="Minimal chair"
@@ -196,37 +201,13 @@ function Add() {
 
                 <label className={styles.colorField}>
                   <span className={styles.colorLabel}>Color</span>
-
-                  <select
-                    className={styles.addColor}
+                  <input
+                    className={styles.formInput}
+                    type="text"
                     name="color"
                     value={productSelector.color}
                     onChange={handleChange}
-                  >
-                    <option value="">Choose color</option>
-                    {color.map((item) => (
-                      <option key={item} value={item}>
-                        {item.toUpperCase()}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-
-                <label className={styles.colorField}>
-                  <span className={styles.colorLabel}>size</span>
-                  <select
-                    className={styles.addColor}
-                    name="size"
-                    value={productSelector.size}
-                    onChange={handleChange}
-                  >
-                    <option value="">Choose size</option>
-                    {size.map((item) => (
-                      <option key={item} value={item}>
-                        {item.toUpperCase()}
-                      </option>
-                    ))}
-                  </select>
+                  ></input>
                 </label>
 
                 <label
@@ -246,11 +227,11 @@ function Add() {
               <div className={styles.formActions}>
                 <button
                   className={styles.submitButton}
-                  // type="submit"
+                  type="submit"
                   onClick={handleAdd}
                 >
                   Add product
-                </button>{" "}
+                </button>
               </div>
             </form>
           </div>
